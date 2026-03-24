@@ -21,9 +21,17 @@ accordionBtns.forEach((accordion) => {
     if (content.style.maxHeight) {
       //this is if the accordion is open
       content.style.maxHeight = null;
+      // Update ARIA state so screen readers know the accordion is opened or closed
+      this.setAttribute("aria-expanded", "false");
+      // Hide the content for all users 
+      content.hidden = true;
     } else {
       //if the accordion is currently closed
+      // Show the content  
+      content.hidden = false;
       content.style.maxHeight = content.scrollHeight + "px";
+      // Update ARIA state so screen readers know the accordion is opened or closed
+      this.setAttribute("aria-expanded", "true");
       console.log(content.style.maxHeight);
     }
   };
